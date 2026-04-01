@@ -3,450 +3,1543 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aura Glow | Ambient UI Effects for AI Apps</title>
-    <meta name="description" content="Aura Glow is a lightweight static HTML showcase for ambient aura effects, polished UI motion, and shareable interface previews for AI apps.">
-    <meta name="theme-color" content="#0a0a0c">
-    <meta name="color-scheme" content="dark light">
+    <title>Garikai Jenje — Senior Software Engineer</title>
+    <meta name="description" content="Garikai Jenje — Senior Software Engineer with 11+ years of experience delivering scalable solutions across fintech, e-commerce, and healthcare. Web, Desktop, Mobile & DevTools.">
+    <meta name="theme-color" content="#0a0a0f">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Aura Glow | Ambient UI Effects for AI Apps">
-    <meta property="og:description" content="A lightweight static HTML showcase for ambient aura effects, polished UI motion, and shareable previews for AI app interfaces.">
+    <meta property="og:title" content="Garikai Jenje — Senior Software Engineer">
+    <meta property="og:description" content="Senior Software Engineer with 11+ years building scalable solutions across fintech, e-commerce, and healthcare.">
     <meta property="og:image" content="./preview.png">
-    <meta property="og:image:alt" content="Aura Glow interface preview with animated ambient UI controls">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Aura Glow | Ambient UI Effects for AI Apps">
-    <meta name="twitter:description" content="A lightweight static HTML showcase for ambient aura effects, polished UI motion, and shareable previews for AI app interfaces.">
+    <meta name="twitter:title" content="Garikai Jenje — Senior Software Engineer">
+    <meta name="twitter:description" content="Senior Software Engineer with 11+ years building scalable solutions across fintech, e-commerce, and healthcare.">
     <meta name="twitter:image" content="./preview.png">
     <link rel="icon" type="image/png" href="./preview.png">
     <link rel="apple-touch-icon" href="./preview.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Colors */
-            --bg-color: #0a0a0c;
-            --text-color: #ffffff;
-            --secondary-text: #888;
-            --panel-bg: rgba(255, 255, 255, 0.05);
-            --panel-border: rgba(255, 255, 255, 0.1);
-            --btn-bg: rgba(255, 255, 255, 0.05);
-            --btn-active-bg: #ffffff;
-            --btn-active-text: #000000;
-            --accent-color: #2ed573;
-
-            /* Mixed Aura Palette */
-            --mix-blue: rgba(0, 102, 255, 0.4);
-            --mix-purple: rgba(160, 32, 240, 0.4);
-            --mix-cyan: rgba(0, 212, 255, 0.4);
-            --mix-indigo: rgba(75, 0, 130, 0.4);
-            
-            /* blue Palette */
-            --blue-glow: rgba(0, 102, 255, 0.6);
-            
-            /* Pink Action Palette */
-            --pink-glow: rgba(236, 72, 153, 0.6);
-            
-            /* Dynamic Controls Defaults */
-            --glow-blur: 40px;
-            --glow-spread: -5px;
-            --glow-speed: 8s;
-            --blue-speed: 4s;
-            --pink-speed: 3s;
+            --bg: #0a0a0f;
+            --bg-card: #111118;
+            --bg-card-hover: #16161f;
+            --border: rgba(255,255,255,0.06);
+            --border-hover: rgba(255,255,255,0.12);
+            --text: #e4e4e7;
+            --text-secondary: #71717a;
+            --text-muted: #52525b;
+            --accent: #10b981;
+            --accent-dim: rgba(16,185,129,0.12);
+            --accent-glow: rgba(16,185,129,0.06);
+            --heading: #fafafa;
+            --font-heading: 'Space Grotesk', sans-serif;
+            --font-body: 'DM Sans', sans-serif;
         }
 
-        html.light-theme {
-            --bg-color: #f3f4f6;
-            --text-color: #16181d;
-            --secondary-text: #5f6673;
-            --panel-bg: rgba(255, 255, 255, 0.82);
-            --panel-border: rgba(17, 24, 39, 0.08);
-            --btn-bg: rgba(17, 24, 39, 0.04);
-            --btn-active-bg: #1a1a1e;
-            --btn-active-text: #ffffff;
-            --accent-color: #00a854;
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-            --mix-blue: rgba(59, 130, 246, 0.14);
-            --mix-purple: rgba(168, 85, 247, 0.12);
-            --mix-cyan: rgba(34, 211, 238, 0.12);
-            --mix-indigo: rgba(99, 102, 241, 0.12);
-            --blue-glow: rgba(59, 130, 246, 0.14);
-            --pink-glow: rgba(236, 72, 153, 0.12);
+        html {
+            scroll-behavior: smooth;
+            scrollbar-width: thin;
+            scrollbar-color: var(--text-muted) transparent;
         }
 
-        body, html {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            min-height: 100%;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: 'Inter', -apple-system, sans-serif;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background-color 0.5s ease;
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font-body);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
         }
 
-        /* --- GLOW OVERLAYS --- */
+        ::selection {
+            background: var(--accent);
+            color: var(--bg);
+        }
 
-        .glow-overlay {
+        a { color: var(--accent); text-decoration: none; transition: opacity 0.2s; }
+        a:hover { opacity: 0.8; }
+
+        img { max-width: 100%; height: auto; display: block; }
+
+        /* NAV */
+        nav {
             position: fixed;
-            inset: 0;
-            width: 100vw;
-            height: 100vh;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .mode-gradient { animation: rotating-aura var(--glow-speed) linear infinite; }
-        .mode-blue { animation: breathe-blue var(--blue-speed) ease-in-out infinite; }
-        .mode-pink { animation: breathe-pink var(--pink-speed) ease-in-out infinite; }
-
-        @keyframes rotating-aura {
-            0% {
-                box-shadow: 
-                    inset 20px 20px var(--glow-blur) var(--glow-spread) var(--mix-blue),
-                    inset -20px 20px var(--glow-blur) var(--glow-spread) var(--mix-purple),
-                    inset -20px -20px var(--glow-blur) var(--glow-spread) var(--mix-cyan),
-                    inset 20px -20px var(--glow-blur) var(--glow-spread) var(--mix-indigo);
-            }
-            50% {
-                box-shadow: 
-                    inset -20px -20px var(--glow-blur) var(--glow-spread) var(--mix-cyan),
-                    inset 20px -20px var(--glow-blur) var(--glow-spread) var(--mix-indigo),
-                    inset 20px 20px var(--glow-blur) var(--glow-spread) var(--mix-blue),
-                    inset -20px 20px var(--glow-blur) var(--glow-spread) var(--mix-purple);
-            }
-            100% {
-                box-shadow: 
-                    inset 20px 20px var(--glow-blur) var(--glow-spread) var(--mix-blue),
-                    inset -20px 20px var(--glow-blur) var(--glow-spread) var(--mix-purple),
-                    inset -20px -20px var(--glow-blur) var(--glow-spread) var(--mix-cyan),
-                    inset 20px -20px var(--glow-blur) var(--glow-spread) var(--mix-indigo);
-            }
-        }
-
-        @keyframes breathe-blue {
-            0%, 100% { box-shadow: inset 0 0 var(--glow-blur) 0px var(--blue-glow); }
-            50% { box-shadow: inset 0 0 calc(var(--glow-blur) * 1.5) calc(var(--glow-blur) * 0.4) var(--blue-glow); }
-        }
-
-        @keyframes breathe-pink {
-            0%, 100% { box-shadow: inset 0 0 var(--glow-blur) 0px var(--pink-glow); }
-            50% { box-shadow: inset 0 0 calc(var(--glow-blur) * 1.5) calc(var(--glow-blur) * 0.4) var(--pink-glow); }
-        }
-
-        /* --- UI ELEMENTS --- */
-
-        .controls {
-            position: relative;
-            z-index: 10;
-            background: var(--panel-bg);
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
             backdrop-filter: blur(20px);
-            padding: 40px;
-            border: 1px solid var(--panel-border);
-            text-align: left;
-            width: 100%;
-            max-width: 440px;
-            box-sizing: border-box;
-            box-shadow: 0 40px 100px rgba(0,0,0,0.4);
+            -webkit-backdrop-filter: blur(20px);
+            background: rgba(10,10,15,0.8);
+            border-bottom: 1px solid var(--border);
         }
 
-        html.light-theme .controls {
-            box-shadow: 0 24px 60px rgba(15, 23, 42, 0.08);
-        }
-
-        .header-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 24px;
-        }
-
-        .theme-container {
+        .nav-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+            height: 60px;
             display: flex;
             align-items: center;
-            gap: 8px;
-            font-size: 11px;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            font-family: var(--font-heading);
             font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+            font-size: 18px;
+            color: var(--heading);
+            letter-spacing: -0.5px;
+        }
+
+        .nav-logo span { color: var(--accent); }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            transition: color 0.2s;
             cursor: pointer;
-            padding: 4px 8px;
-            background: var(--panel-border);
-            opacity: 0.8;
-            transition: opacity 0.2s;
         }
 
-        .theme-container:hover { opacity: 1; }
-        html.light-theme .theme-container { color: var(--text-color); }
+        .nav-links a:hover { color: var(--text); opacity: 1; }
 
-        .theme-container:focus-visible,
-        button:focus-visible,
-        input[type="range"]:focus-visible {
-            outline: 2px solid var(--accent-color);
-            outline-offset: 2px;
+        .nav-mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text);
+            cursor: pointer;
+            padding: 8px;
         }
 
-        h1 {
-            margin: 0;
-            font-size: 28px;
-            font-weight: 800;
-            letter-spacing: -1.5px;
-            color: var(--text-color);
+        /* CONTAINER */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
         }
 
-        .hero-copy {
-            margin-top: 10px;
-            max-width: 280px;
-            font-size: 12px;
-            line-height: 1.6;
-            color: var(--secondary-text);
-            letter-spacing: 0.2px;
-        }
-
-        .hero-copy strong {
-            color: var(--text-color);
-            font-weight: 700;
+        /* SECTION */
+        section {
+            padding: 100px 0;
         }
 
         .section-label {
-            font-size: 10px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: var(--secondary-text);
-            margin-bottom: 12px;
-            margin-top: 24px;
-            display: block;
-        }
-
-        .button-group {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 8px;
-        }
-
-        button {
-            padding: 10px;
-            border: 1px solid var(--panel-border);
-            background: var(--btn-bg);
-            color: var(--text-color);
+            font-family: var(--font-heading);
+            font-size: 11px;
             font-weight: 600;
-            cursor: pointer;
-            font-size: 12px;
-            transition: background 0.2s;
-        }
-
-        button:hover { background: rgba(255, 255, 255, 0.08); }
-        .light-theme button:hover { background: rgba(0, 0, 0, 0.08); }
-
-        button.active {
-            background: var(--btn-active-bg);
-            color: var(--btn-active-text);
-            border-color: var(--btn-active-bg);
-        }
-
-        /* --- SLIDERS --- */
-
-        .slider-container {
-            margin-top: 16px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--accent);
+            margin-bottom: 16px;
             display: flex;
-            flex-direction: column;
+            align-items: center;
             gap: 12px;
         }
 
-        .slider-item {
+        .section-label::before {
+            content: '';
+            width: 24px;
+            height: 1px;
+            background: var(--accent);
+        }
+
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--heading);
+            letter-spacing: -1px;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .section-desc {
+            color: var(--text-secondary);
+            font-size: 16px;
+            line-height: 1.8;
+            max-width: 640px;
+        }
+
+        /* HERO */
+        #hero {
+            min-height: 100vh;
             display: flex;
-            flex-direction: column;
-            gap: 6px;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 60px;
         }
 
-        .slider-header {
+        .hero-bg-glow {
+            position: absolute;
+            top: -200px;
+            right: -200px;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-name {
+            font-family: var(--font-heading);
+            font-size: clamp(42px, 6vw, 72px);
+            font-weight: 700;
+            color: var(--heading);
+            letter-spacing: -2px;
+            line-height: 1.05;
+            margin-bottom: 16px;
+        }
+
+        .hero-name .accent { color: var(--accent); }
+
+        .hero-role {
+            font-size: 18px;
+            color: var(--text-secondary);
+            font-weight: 400;
+            margin-bottom: 28px;
+            line-height: 1.6;
+            max-width: 560px;
+        }
+
+        .hero-meta {
             display: flex;
-            justify-content: space-between;
-            font-size: 12px;
-            font-weight: 600;
+            gap: 24px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
         }
 
-        .slider-value { color: var(--accent-color); }
-
-        input[type="range"] {
-            appearance: none;
-            -webkit-appearance: none;
-            width: 100%;
-            height: 4px;
-            background: var(--panel-border);
-            outline: none;
+        .hero-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: var(--text-muted);
         }
 
-        input[type="range"]::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            width: 12px;
-            height: 12px;
-            background: var(--text-color);
-            cursor: pointer;
-            border: none;
+        .hero-meta-item svg {
+            width: 16px;
+            height: 16px;
+            color: var(--text-secondary);
         }
 
-        .status-badge {
+        .hero-links {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .hero-link {
             display: inline-flex;
             align-items: center;
-            gap: 6px;
-            padding: 4px 10px;
-            background: rgba(46, 213, 115, 0.1);
-            color: var(--accent-color);
-            font-size: 10px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            gap: 10px;
+            padding: 12px 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: var(--text);
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .hero-link:hover {
+            border-color: var(--border-hover);
+            background: var(--bg-card-hover);
+            opacity: 1;
+        }
+
+        .hero-link svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .hero-link--accent {
+            background: var(--accent);
+            color: var(--bg);
+            border-color: var(--accent);
+        }
+
+        .hero-link--accent:hover {
+            background: #0ea572;
+            border-color: #0ea572;
+        }
+
+        /* SKILLS */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 16px;
+            margin-top: 40px;
+        }
+
+        .skill-category {
+            padding: 24px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            transition: border-color 0.2s;
+        }
+
+        .skill-category:hover {
+            border-color: var(--border-hover);
+        }
+
+        .skill-category h3 {
+            font-family: var(--font-heading);
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--heading);
             margin-bottom: 12px;
         }
 
-        .status-dot {
-            width: 6px;
-            height: 6px;
-            background: var(--accent-color);
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
         }
 
-        .visually-hidden {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0, 0, 0, 0);
+        .skill-tag {
+            padding: 5px 12px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            font-size: 12px;
+            color: var(--text-secondary);
+            font-weight: 500;
             white-space: nowrap;
-            border: 0;
         }
 
-        @media (max-width: 640px) {
-            .controls {
-                max-width: calc(100vw - 32px);
-                padding: 24px;
+        /* EXPERIENCE */
+        .timeline {
+            margin-top: 40px;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 7px;
+            top: 8px;
+            bottom: 8px;
+            width: 1px;
+            background: var(--border);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 36px;
+            padding-bottom: 40px;
+        }
+
+        .timeline-item:last-child { padding-bottom: 0; }
+
+        .timeline-dot {
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: var(--bg);
+            border: 2px solid var(--text-muted);
+            z-index: 2;
+            transition: border-color 0.2s;
+        }
+
+        .timeline-item:first-child .timeline-dot {
+            border-color: var(--accent);
+            background: var(--accent-dim);
+        }
+
+        .timeline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 4px;
+        }
+
+        .timeline-title {
+            font-family: var(--font-heading);
+            font-size: 17px;
+            font-weight: 600;
+            color: var(--heading);
+        }
+
+        .timeline-date {
+            font-size: 13px;
+            color: var(--text-muted);
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .timeline-company {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+        }
+
+        .timeline-bullets {
+            list-style: none;
+            padding: 0;
+        }
+
+        .timeline-bullets li {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            padding-left: 16px;
+            position: relative;
+            margin-bottom: 4px;
+        }
+
+        .timeline-bullets li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: var(--text-muted);
+        }
+
+        .timeline-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-top: 10px;
+        }
+
+        .timeline-skill-tag {
+            padding: 3px 10px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            font-size: 11px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        /* PROJECTS - MOBILE APPS */
+        .apps-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-top: 40px;
+        }
+
+        .app-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            overflow: hidden;
+            transition: all 0.25s;
+            color: var(--text);
+        }
+
+        .app-card:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-2px);
+            opacity: 1;
+        }
+
+        .app-card-img {
+            width: 100%;
+            aspect-ratio: 16/10;
+            object-fit: cover;
+            object-position: top;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .app-card-body {
+            padding: 24px;
+        }
+
+        .app-card-title {
+            font-family: var(--font-heading);
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--heading);
+            margin-bottom: 6px;
+        }
+
+        .app-card-desc {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .app-card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-top: 12px;
+        }
+
+        .app-card-tag {
+            padding: 3px 10px;
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            font-size: 11px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        /* WEBSITES GRID */
+        .websites-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-top: 40px;
+        }
+
+        .website-card {
+            display: block;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            overflow: hidden;
+            transition: all 0.25s;
+            color: var(--text);
+        }
+
+        .website-card:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-2px);
+            opacity: 1;
+        }
+
+        .website-card-img {
+            width: 100%;
+            aspect-ratio: 16/10;
+            object-fit: cover;
+            object-position: top;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .website-card-body {
+            padding: 24px;
+        }
+
+        .website-card-title {
+            font-family: var(--font-heading);
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--heading);
+            margin-bottom: 6px;
+        }
+
+        .website-card-url {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+        }
+
+        .website-card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-top: 12px;
+        }
+
+        .website-card-tag {
+            padding: 4px 10px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            font-size: 11px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        /* PASSION / DEVTOOLS */
+        .passion-section {
+            margin-top: 40px;
+        }
+
+        .passion-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            align-items: start;
+        }
+
+        .passion-text {
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .passion-text strong {
+            color: var(--heading);
+            font-weight: 600;
+        }
+
+        .passion-gallery {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .passion-gallery img {
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            width: 100%;
+            aspect-ratio: 16/10;
+            object-fit: cover;
+            transition: all 0.25s;
+            cursor: pointer;
+        }
+
+        .passion-gallery img:hover {
+            border-color: var(--border-hover);
+            transform: scale(1.02);
+        }
+
+        .passion-gallery img.full-width {
+            grid-column: 1 / -1;
+        }
+
+        /* EDUCATION */
+        .education-card {
+            margin-top: 40px;
+            padding: 28px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            display: inline-flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .education-icon {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--accent-dim);
+            border-radius: 12px;
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+
+        .education-icon svg {
+            width: 22px;
+            height: 22px;
+        }
+
+        .education-info h3 {
+            font-family: var(--font-heading);
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--heading);
+            margin-bottom: 2px;
+        }
+
+        .education-info p {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        /* CONNECT / FOOTER */
+        .connect-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 14px;
+            margin-top: 40px;
+        }
+
+        .connect-card {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 18px 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .connect-card:hover {
+            border-color: var(--accent);
+            background: var(--bg-card-hover);
+            opacity: 1;
+        }
+
+        .connect-card-icon {
+            width: 42px;
+            height: 42px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--accent-dim);
+            border-radius: 10px;
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+
+        .connect-card-icon svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .connect-card h4 {
+            font-family: var(--font-heading);
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--heading);
+        }
+
+        .connect-card p {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-inner {
+            text-align: center;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        /* REVEAL ANIMATION */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* LIGHTBOX */
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 200;
+            background: rgba(0,0,0,0.9);
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            padding: 40px;
+        }
+
+        .lightbox.open { display: flex; }
+
+        .lightbox img {
+            max-width: 90vw;
+            max-height: 90vh;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+
+        /* MOBILE NAV OVERLAY */
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 150;
+            background: rgba(10,10,15,0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 32px;
+        }
+
+        .mobile-nav.open { display: flex; }
+
+        .mobile-nav a {
+            font-family: var(--font-heading);
+            font-size: 24px;
+            color: var(--text);
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .mobile-nav-close {
+            position: absolute;
+            top: 18px;
+            right: 24px;
+            background: none;
+            border: none;
+            color: var(--text);
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            section { padding: 64px 0; }
+
+            .nav-links { display: none; }
+            .nav-mobile-toggle { display: block; }
+
+            .section-title { font-size: 28px; }
+
+            .hero-name { letter-spacing: -1px; }
+
+            .passion-content {
+                grid-template-columns: 1fr;
             }
 
-            .header-row {
-                gap: 16px;
-            }
+            .timeline-header { flex-direction: column; gap: 4px; }
 
-            h1 {
-                font-size: 24px;
-            }
+            .apps-grid { grid-template-columns: 1fr; }
+            .websites-grid { grid-template-columns: 1fr; }
+
+            .connect-cards { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 480px) {
+            .container { padding: 0 16px; }
+            .hero-links { flex-direction: column; }
+            .hero-link { justify-content: center; }
+            .connect-cards { grid-template-columns: 1fr; }
+            .skills-grid { grid-template-columns: 1fr; }
+            .passion-gallery { grid-template-columns: 1fr; }
+            .passion-gallery img.full-width { grid-column: auto; }
         }
 
         @media (prefers-reduced-motion: reduce) {
-            .mode-gradient,
-            .mode-blue,
-            .mode-pink {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-            }
-
-            .theme-container,
-            button,
-            body,
-            html {
-                transition: none;
-            }
-
-            .mode-gradient {
-                box-shadow:
-                    inset 20px 20px var(--glow-blur) var(--glow-spread) var(--mix-blue),
-                    inset -20px 20px var(--glow-blur) var(--glow-spread) var(--mix-purple),
-                    inset -20px -20px var(--glow-blur) var(--glow-spread) var(--mix-cyan),
-                    inset 20px -20px var(--glow-blur) var(--glow-spread) var(--mix-indigo);
-            }
-
-            .mode-blue {
-                box-shadow: inset 0 0 var(--glow-blur) 0 var(--blue-glow);
-            }
-
-            .mode-pink {
-                box-shadow: inset 0 0 var(--glow-blur) 0 var(--pink-glow);
-            }
+            html { scroll-behavior: auto; }
+            .reveal { opacity: 1; transform: none; transition: none; }
         }
     </style>
 </head>
 <body>
 
-    <div id="glow" class="glow-overlay mode-gradient" aria-hidden="true"></div>
-
-    <div class="controls">
-        <div class="header-row">
-            <div>
-               
-                <h1>Aura Glow</h1>
-                <div class="hero-copy"><strong>For Your AI Apps UI</strong> with ambient motion, subtle depth, and an instantly shareable static preview.</div>
-            </div>
-            <button id="theme-toggle" class="theme-container" type="button" aria-pressed="false" onclick="toggleTheme()">
-                <span id="theme-text">Light Mode</span>
+    <!-- NAV -->
+    <nav id="navbar">
+        <div class="nav-inner">
+            <a href="#hero" class="nav-logo cursor-pointer">G<span>.</span>Jenje</a>
+            <ul class="nav-links">
+                <li><a href="#skills" class="cursor-pointer">Skills</a></li>
+                <li><a href="#apps" class="cursor-pointer">Apps</a></li>
+                <li><a href="#websites" class="cursor-pointer">Websites</a></li>
+                <li><a href="#experience" class="cursor-pointer">Experience</a></li>
+                <li><a href="#devtools" class="cursor-pointer">DevTools</a></li>
+                <li><a href="#connect" class="cursor-pointer">Connect</a></li>
+            </ul>
+            <button class="nav-mobile-toggle cursor-pointer" onclick="toggleMobileNav()" aria-label="Open menu">
+                <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
             </button>
         </div>
+    </nav>
 
-        <span class="section-label" id="aura-selection-label">Aura Selection</span>
-        <div class="button-group">
-            <button id="btn-gradient" class="active" onclick="setMode('gradient')">Mixed Aura</button>
-            <button id="btn-blue" onclick="setMode('blue')">Blue Aura</button>
-            <button id="btn-pink" onclick="setMode('pink')">Pink Aura</button>
-        </div>
+    <!-- MOBILE NAV -->
+    <div class="mobile-nav" id="mobileNav">
+        <button class="mobile-nav-close cursor-pointer" onclick="toggleMobileNav()" aria-label="Close menu">
+            <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="6" y1="6" x2="22" y2="22"/><line x1="22" y1="6" x2="6" y2="22"/></svg>
+        </button>
+        <a href="#skills" class="cursor-pointer" onclick="toggleMobileNav()">Skills</a>
+        <a href="#apps" class="cursor-pointer" onclick="toggleMobileNav()">Apps</a>
+        <a href="#websites" class="cursor-pointer" onclick="toggleMobileNav()">Websites</a>
+        <a href="#experience" class="cursor-pointer" onclick="toggleMobileNav()">Experience</a>
+        <a href="#devtools" class="cursor-pointer" onclick="toggleMobileNav()">DevTools</a>
+        <a href="#connect" class="cursor-pointer" onclick="toggleMobileNav()">Connect</a>
+    </div>
 
-        <div class="slider-container">
-            <div class="slider-item">
-                <div class="slider-header">
-                    <label for="size-slider">Intensity / Size</label>
-                    <output class="slider-value" id="size-val" for="size-slider">40px</output>
+    <!-- HERO -->
+    <section id="hero">
+        <div class="hero-bg-glow"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-name">Garikai Jenje<span class="accent">.</span></h1>
+                <p class="hero-role">Senior Software Engineer & technical lead with <strong style="color:var(--heading);font-weight:600;">11+ years</strong> delivering scalable, real-world solutions across fintech, e-commerce, and healthcare. Passionate about DevTools & AI.</p>
+                <div class="hero-meta">
+                    <span class="hero-meta-item">
+                        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        South Africa
+                    </span>
+                    <span class="hero-meta-item">
+                        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                        Web · Desktop · Mobile
+                    </span>
+                    <span class="hero-meta-item">
+                        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                        DevTools Enthusiast
+                    </span>
                 </div>
-                <input type="range" id="size-slider" min="10" max="150" value="40" oninput="updateSize(this.value)" aria-describedby="size-val">
-            </div>
-
-            <div class="slider-item">
-                <div class="slider-header">
-                    <label for="speed-slider">Animation Speed</label>
-                    <output class="slider-value" id="speed-val" for="speed-slider">8s</output>
+                <div class="hero-links">
+                    <a href="https://github.com/garikaijenje" target="_blank" rel="noopener" class="hero-link cursor-pointer">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                        GitHub
+                    </a>
+                    <a href="https://www.linkedin.com/in/garikai-jenje" target="_blank" rel="noopener" class="hero-link cursor-pointer">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                        LinkedIn
+                    </a>
+                    <a href="https://x.com/garikaijenje" target="_blank" rel="noopener" class="hero-link cursor-pointer">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                        X / Twitter
+                    </a>
                 </div>
-                <input type="range" id="speed-slider" min="1" max="15" value="8" step="0.5" oninput="updateSpeed(this.value)" aria-describedby="speed-val">
             </div>
         </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+        <div class="container">
+            <div class="reveal">
+                <div class="section-label">Core Skills</div>
+                <h2 class="section-title">Technical Expertise</h2>
+                <p class="section-desc">Full-stack engineering with a product-driven mindset — building systems that are well-architected and aligned with business outcomes.</p>
+            </div>
+            <div class="skills-grid reveal">
+                <div class="skill-category">
+                    <h3>Languages & Frameworks</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">TypeScript</span>
+                        <span class="skill-tag">PHP</span>
+                        <span class="skill-tag">Node.js</span>
+                        <span class="skill-tag">React</span>
+                        <span class="skill-tag">Next.js</span>
+                        <span class="skill-tag">React Native</span>
+                        <span class="skill-tag">Laravel</span>
+                        <span class="skill-tag">NestJS</span>
+                        <span class="skill-tag">Rust</span>
+                        <span class="skill-tag">Python</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Databases & APIs</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">PostgreSQL</span>
+                        <span class="skill-tag">MySQL</span>
+                        <span class="skill-tag">Redis</span>
+                        <span class="skill-tag">REST APIs</span>
+                        <span class="skill-tag">WebSockets</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Cloud & DevOps</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">AWS</span>
+                        <span class="skill-tag">Azure</span>
+                        <span class="skill-tag">Digital Ocean</span>
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">GitHub Actions</span>
+                        <span class="skill-tag">CI/CD</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Quality & Observability</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Sentry</span>
+                        <span class="skill-tag">BugSnag</span>
+                        <span class="skill-tag">LogRocket</span>
+                        <span class="skill-tag">PostHog</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Other</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">WebRTC</span>
+                        <span class="skill-tag">USSD Systems</span>
+                        <span class="skill-tag">Tailwind CSS</span>
+                        <span class="skill-tag">ShadCN</span>
+                        <span class="skill-tag">Figma</span>
+                        <span class="skill-tag">Electron.js</span>
+                        <span class="skill-tag">Tauri (Rust)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MOBILE APPS -->
+    <section id="apps">
+        <div class="container">
+            <div class="reveal">
+                <div class="section-label">Mobile Apps</div>
+                <h2 class="section-title">Apps I've Developed</h2>
+                <p class="section-desc">Published mobile applications built with React Native / Expo across fintech, healthcare, and social networking.</p>
+            </div>
+            <div class="apps-grid reveal">
+                <a href="https://apps.apple.com/gb/app/access-forex-money-transfer/id1608499330" target="_blank" rel="noopener" class="app-card cursor-pointer">
+                    <img src="./images/access-forex-app.png" alt="Access Forex — Money Transfer App" class="app-card-img" loading="lazy">
+                    <div class="app-card-body">
+                        <div class="app-card-title">Access Forex</div>
+                        <div class="app-card-desc">Money transfer and remittance mobile app for cross-border payments between GBP and USD, with transaction tracking and profile management.</div>
+                        <div class="app-card-tags">
+                            <span class="app-card-tag">React Native</span>
+                            <span class="app-card-tag">Expo</span>
+                            <span class="app-card-tag">Fintech</span>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://apps.apple.com/gb/app/bantusphere/id6756315107" target="_blank" rel="noopener" class="app-card cursor-pointer">
+                    <img src="./images/bantusphere-app.png" alt="BantuSphere — Zimbabwe's Super App" class="app-card-img" loading="lazy">
+                    <div class="app-card-body">
+                        <div class="app-card-title">BantuSphere</div>
+                        <div class="app-card-desc">Zimbabwe's all-in-one super app — mini apps, jobs, properties, events, digital wallet, social feed, maps, and more in a single platform.</div>
+                        <div class="app-card-tags">
+                            <span class="app-card-tag">React Native</span>
+                            <span class="app-card-tag">Expo</span>
+                            <span class="app-card-tag">Super App</span>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://apps.apple.com/gb/app/glp-1-tracker-dosery/id6744178871" target="_blank" rel="noopener" class="app-card cursor-pointer">
+                    <img src="./images/dosery-app.png" alt="Dosery — GLP-1 Health Tracker" class="app-card-img" loading="lazy">
+                    <div class="app-card-body">
+                        <div class="app-card-title">Dosery</div>
+                        <div class="app-card-desc">GLP-1 health tracker for medical dose management, BMI tracking, weight progress, and health journey logging.</div>
+                        <div class="app-card-tags">
+                            <span class="app-card-tag">React Native</span>
+                            <span class="app-card-tag">Expo</span>
+                            <span class="app-card-tag">Healthcare</span>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://apps.apple.com/gb/app/elms-app/id6448575766" target="_blank" rel="noopener" class="app-card cursor-pointer">
+                    <img src="./images/elms-app.png" alt="ELMS — Healthcare App" class="app-card-img" loading="lazy">
+                    <div class="app-card-body">
+                        <div class="app-card-title">ELMS Health Solutions</div>
+                        <div class="app-card-desc">Healthcare worker management app for client tracking, timesheets, and multi-branch contact coordination.</div>
+                        <div class="app-card-tags">
+                            <span class="app-card-tag">React Native</span>
+                            <span class="app-card-tag">Expo</span>
+                            <span class="app-card-tag">Healthcare</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- WEBSITES -->
+    <section id="websites">
+        <div class="container">
+            <div class="reveal">
+                <div class="section-label">Websites</div>
+                <h2 class="section-title">Websites I've Built</h2>
+                <p class="section-desc">Full-stack web applications and marketing sites delivered for clients across various industries.</p>
+            </div>
+            <div class="websites-grid reveal">
+                <a href="https://ggemfarming.com" target="_blank" rel="noopener" class="website-card cursor-pointer">
+                    <img src="./images/websites/ggemfarming.png" alt="GGEM Farming Website" class="website-card-img" loading="lazy">
+                    <div class="website-card-body">
+                        <div class="website-card-title">GGEM Farming</div>
+                        <div class="website-card-url">ggemfarming.com</div>
+                        <div class="website-card-tags">
+                            <span class="website-card-tag">WordPress</span>
+                            <span class="website-card-tag">Custom Theme</span>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://www.bantusphere.com" target="_blank" rel="noopener" class="website-card cursor-pointer">
+                    <img src="./images/websites/bantusphere.png" alt="BantuSphere Website" class="website-card-img" loading="lazy">
+                    <div class="website-card-body">
+                        <div class="website-card-title">BantuSphere</div>
+                        <div class="website-card-url">bantusphere.com</div>
+                        <div class="website-card-tags">
+                            <span class="website-card-tag">Next.js</span>
+                            <span class="website-card-tag">MongoDB</span>
+                            <span class="website-card-tag">PostgreSQL</span>
+                            <span class="website-card-tag">React</span>
+                            <span class="website-card-tag">TypeScript</span>
+                            <span class="website-card-tag">Tailwind</span>
+                            <span class="website-card-tag">LangChain</span>
+                            <span class="website-card-tag">AWS</span>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://islandimporter.com" target="_blank" rel="noopener" class="website-card cursor-pointer">
+                    <img src="./images/websites/islandimporter.png" alt="Island Importer Website" class="website-card-img" loading="lazy">
+                    <div class="website-card-body">
+                        <div class="website-card-title">Island Importer</div>
+                        <div class="website-card-url">islandimporter.com</div>
+                        <div class="website-card-tags">
+                            <span class="website-card-tag">Shopify</span>
+                            <span class="website-card-tag">Custom Theme & Plugins</span>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://dailysale.co.zw" target="_blank" rel="noopener" class="website-card cursor-pointer">
+                    <img src="./images/websites/dailysale.png" alt="Daily Sale Website" class="website-card-img" loading="lazy">
+                    <div class="website-card-body">
+                        <div class="website-card-title">Daily Sale</div>
+                        <div class="website-card-url">dailysale.co.zw</div>
+                        <div class="website-card-tags">
+                            <span class="website-card-tag">Next.js</span>
+                            <span class="website-card-tag">PostgreSQL</span>
+                            <span class="website-card-tag">AWS</span>
+                            <span class="website-card-tag">Redis</span>
+                            <span class="website-card-tag">Express.js</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- DEVTOOLS / PASSION -->
+    <section id="devtools">
+        <div class="container">
+            <div class="reveal">
+                <div class="section-label">My Passion</div>
+                <h2 class="section-title">Building Creative DevTools</h2>
+            </div>
+            <div class="passion-section reveal">
+                <div class="passion-content">
+                    <div>
+                        <p class="passion-text">I am extremely passionate about developing <strong>creative DevTools</strong>. Over the years, I have consistently created custom tools for myself and my teammates to address various challenges, particularly in debugging.</p>
+                        <p class="passion-text" style="margin-top:16px;">Currently, I am working on an <strong>all-in-one coding tool</strong> that integrates all the tools I've developed over the years, tailored for the era of AI coding.</p>
+                        <div class="timeline-skills" style="margin-top:20px;">
+                            <span class="timeline-skill-tag">Electron.js</span>
+                            <span class="timeline-skill-tag">Tauri (Rust)</span>
+                            <span class="timeline-skill-tag">Node.js</span>
+                            <span class="timeline-skill-tag">AI Integration</span>
+                            <span class="timeline-skill-tag">MCP Servers</span>
+                        </div>
+                    </div>
+                    <div class="passion-gallery">
+                        <img src="./images/wazza-desktop-app/image-1.png" alt="Wazza — AI Coding Agent Interface" loading="lazy" onclick="openLightbox(this)">
+                        <img src="./images/wazza-desktop-app/image-2.png" alt="Wazza — Secret Detection & Git Security" loading="lazy" onclick="openLightbox(this)">
+                        <img src="./images/wazza-desktop-app/image-3.png" alt="Wazza — Rules & Guidelines Manager" loading="lazy" onclick="openLightbox(this)">
+                        <img src="./images/wazza-desktop-app/image-4.png" alt="Wazza — Code Review Tool" loading="lazy" onclick="openLightbox(this)">
+                        <img src="./images/wazza-desktop-app/image-5.png" alt="Wazza — MCP Gateway Manager" loading="lazy" class="full-width" onclick="openLightbox(this)">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience">
+        <div class="container">
+            <div class="reveal">
+                <div class="section-label">Experience</div>
+                <h2 class="section-title">Where I've Worked</h2>
+                <p class="section-desc">A track record of delivering impactful solutions across fintech, e-commerce, healthcare, and enterprise platforms.</p>
+            </div>
+            <div class="timeline reveal">
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-header">
+                        <div class="timeline-title">Freelance</div>
+                        <span class="timeline-date">Feb 2025 – Present</span>
+                    </div>
+                    <div class="timeline-company">Freelance — South Africa (Remote)</div>
+                    <ul class="timeline-bullets">
+                        <li>Collaborated with clients in the United States, United Kingdom, and Zambia to deliver tailored digital solutions.</li>
+                        <li>Developed and maintained remittance systems, e-commerce websites (custom builds, Medusa, Shopify), and healthcare applications.</li>
+                        <li>Built full-stack applications and APIs for seamless integration across platforms.</li>
+                    </ul>
+                    <div class="timeline-skills">
+                        <span class="timeline-skill-tag">Tauri (Rust)</span>
+                        <span class="timeline-skill-tag">Expo</span>
+                        <span class="timeline-skill-tag">React Native</span>
+                        <span class="timeline-skill-tag">E-Commerce</span>
+                        <span class="timeline-skill-tag">TypeScript</span>
+                        <span class="timeline-skill-tag">REST APIs</span>
+                        <span class="timeline-skill-tag">AWS</span>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-header">
+                        <div class="timeline-title">Senior Software Engineer</div>
+                        <span class="timeline-date">Aug 2025 – Feb 2026</span>
+                    </div>
+                    <div class="timeline-company">BantuSphere — Zimbabwe's Super App — United Kingdom (Remote)</div>
+                    <ul class="timeline-bullets">
+                        <li>Contributed to a super app bringing multiple services into a single platform.</li>
+                        <li>Engineered features such as AI Chat, Job Board, and Listing Marketplaces.</li>
+                        <li>Built and improved admin dashboards for platform management and operational oversight.</li>
+                    </ul>
+                    <div class="timeline-skills">
+                        <span class="timeline-skill-tag">PostgreSQL</span>
+                        <span class="timeline-skill-tag">React.js</span>
+                        <span class="timeline-skill-tag">TypeScript</span>
+                        <span class="timeline-skill-tag">Expo</span>
+                        <span class="timeline-skill-tag">AWS</span>
+                        <span class="timeline-skill-tag">Next.js</span>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-header">
+                        <div class="timeline-title">Software Engineer</div>
+                        <span class="timeline-date">Feb 2025 – Jul 2025</span>
+                    </div>
+                    <div class="timeline-company">Rajaton Remit — United Kingdom (Remote)</div>
+                    <ul class="timeline-bullets">
+                        <li>Developed a custom end-to-end remittance platform using Laravel and Next.js.</li>
+                        <li>Designed internal support applications for Customer Care Agents.</li>
+                        <li>Worked closely with cross-functional teams for seamless platform integration.</li>
+                    </ul>
+                    <div class="timeline-skills">
+                        <span class="timeline-skill-tag">Expo</span>
+                        <span class="timeline-skill-tag">React Native</span>
+                        <span class="timeline-skill-tag">Next.js</span>
+                        <span class="timeline-skill-tag">Azure</span>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-header">
+                        <div class="timeline-title">Senior Software Developer</div>
+                        <span class="timeline-date">Nov 2024 – Jan 2025</span>
+                    </div>
+                    <div class="timeline-company">Access Forex — Gauteng, South Africa (On-site)</div>
+                    <ul class="timeline-bullets">
+                        <li>Managed and enhanced fintech applications and internal systems.</li>
+                        <li>Integrated MoneyGram and Western Union to expand remittance capabilities.</li>
+                        <li>Led a team of consultant developers, keeping delivery aligned with project goals.</li>
+                    </ul>
+                    <div class="timeline-skills">
+                        <span class="timeline-skill-tag">Systems Design</span>
+                        <span class="timeline-skill-tag">Laravel</span>
+                        <span class="timeline-skill-tag">Next.js</span>
+                        <span class="timeline-skill-tag">React Native</span>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-header">
+                        <div class="timeline-title">Lead Developer</div>
+                        <span class="timeline-date">May 2024 – Oct 2024</span>
+                    </div>
+                    <div class="timeline-company">The Daily Sale Shop Zimbabwe — Zimbabwe (Remote)</div>
+                    <ul class="timeline-bullets">
+                        <li>Led development of a custom Next.js e-commerce application with staff dashboards for order management and reporting.</li>
+                        <li>Built an internal Driver React Native app for order tracking and delivery operations.</li>
+                        <li>Delivered e-commerce solutions that improved operational efficiency.</li>
+                    </ul>
+                    <div class="timeline-skills">
+                        <span class="timeline-skill-tag">Systems Design</span>
+                        <span class="timeline-skill-tag">React.js</span>
+                        <span class="timeline-skill-tag">Node.js</span>
+                        <span class="timeline-skill-tag">React Native</span>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-header">
+                        <div class="timeline-title">IT & Tech Development Lead</div>
+                        <span class="timeline-date">Jul 2023 – Apr 2024</span>
+                    </div>
+                    <div class="timeline-company">GGEM Farming — Malawi (Hybrid)</div>
+                    <ul class="timeline-bullets">
+                        <li>Developed mobile app and dashboard for food-relief program data and reporting.</li>
+                        <li>Supported project management and DevOps workflows using Jira and GitHub.</li>
+                        <li>Built internal tools and identified practical cloud solutions.</li>
+                    </ul>
+                    <div class="timeline-skills">
+                        <span class="timeline-skill-tag">MySQL</span>
+                        <span class="timeline-skill-tag">NestJS</span>
+                        <span class="timeline-skill-tag">React Native</span>
+                        <span class="timeline-skill-tag">PostgreSQL</span>
+                        <span class="timeline-skill-tag">Heroku</span>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-header">
+                        <div class="timeline-title">Full Stack Developer</div>
+                        <span class="timeline-date">Feb 2022 – Jun 2023</span>
+                    </div>
+                    <div class="timeline-company">Access Forex — Gauteng, South Africa (On-site)</div>
+                    <ul class="timeline-bullets">
+                        <li>Developed a remittance mobile app using CodeIgniter, MySQL, and React Native with a custom UI library.</li>
+                        <li>Built self-service and agent applications using Laravel, PostgreSQL, React, and Tailwind.</li>
+                        <li>Managed CI/CD pipelines using GitHub Actions and Azure; built a USSD visualization tool and real-time Bureaux De Change Reporting System.</li>
+                    </ul>
+                    <div class="timeline-skills">
+                        <span class="timeline-skill-tag">React Native</span>
+                        <span class="timeline-skill-tag">PostgreSQL</span>
+                        <span class="timeline-skill-tag">Laravel</span>
+                        <span class="timeline-skill-tag">GitHub Actions</span>
+                        <span class="timeline-skill-tag">Sentry</span>
+                        <span class="timeline-skill-tag">Azure</span>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-header">
+                        <div class="timeline-title">Full Stack Developer</div>
+                        <span class="timeline-date">Sep 2020 – Oct 2021</span>
+                    </div>
+                    <div class="timeline-company">Growthsense — Cambridge, United Kingdom (Remote)</div>
+                    <ul class="timeline-bullets">
+                        <li>Developed remittance web app prototypes and backend implementations using CodeIgniter.</li>
+                        <li>Collaborated on healthcare workflow and recruitment systems; built an LMS with video conferencing.</li>
+                        <li>Produced UI/UX designs in Figma at the start of each project.</li>
+                    </ul>
+                    <div class="timeline-skills">
+                        <span class="timeline-skill-tag">WebRTC</span>
+                        <span class="timeline-skill-tag">Figma</span>
+                        <span class="timeline-skill-tag">CodeIgniter</span>
+                        <span class="timeline-skill-tag">Node.js</span>
+                        <span class="timeline-skill-tag">PHP</span>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-header">
+                        <div class="timeline-title">Full Stack Developer</div>
+                        <span class="timeline-date">Mar 2019 – Jul 2020</span>
+                    </div>
+                    <div class="timeline-company">Batsira Ads — Harare, Zimbabwe (Remote)</div>
+                    <ul class="timeline-bullets">
+                        <li>Developed a marketing mobile app using React Native, CodeIgniter, and MySQL.</li>
+                        <li>Built a COVID-19 Information Hub for the Zimbabwe Ministry of Health using React and public APIs.</li>
+                    </ul>
+                    <div class="timeline-skills">
+                        <span class="timeline-skill-tag">React Native</span>
+                        <span class="timeline-skill-tag">CodeIgniter</span>
+                        <span class="timeline-skill-tag">MySQL</span>
+                        <span class="timeline-skill-tag">React.js</span>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-header">
+                        <div class="timeline-title">Full Stack Developer</div>
+                        <span class="timeline-date">May 2019 – Aug 2019</span>
+                    </div>
+                    <div class="timeline-company">ZimWorX — Texas, United States (Remote)</div>
+                    <ul class="timeline-bullets">
+                        <li>Worked with an in-house CMS built on Laravel and Vue.js to develop client websites.</li>
+                        <li>Handled bug fixing, repository cleanup, and website migrations from AWS.</li>
+                    </ul>
+                    <div class="timeline-skills">
+                        <span class="timeline-skill-tag">Vue.js</span>
+                        <span class="timeline-skill-tag">Laravel</span>
+                        <span class="timeline-skill-tag">AWS</span>
+                        <span class="timeline-skill-tag">Node.js</span>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-header">
+                        <div class="timeline-title">Full Stack Developer</div>
+                        <span class="timeline-date">Jul 2018 – May 2019</span>
+                    </div>
+                    <div class="timeline-company">Web Entangled — Harare, Zimbabwe (Hybrid)</div>
+                    <ul class="timeline-bullets">
+                        <li>Designed and developed client websites, intranets, custom themes, plugins, mobile apps, and a learning management system.</li>
+                    </ul>
+                    <div class="timeline-skills">
+                        <span class="timeline-skill-tag">WordPress</span>
+                        <span class="timeline-skill-tag">React Native</span>
+                        <span class="timeline-skill-tag">Laravel</span>
+                        <span class="timeline-skill-tag">PHP</span>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-header">
+                        <div class="timeline-title">Web Designer</div>
+                        <span class="timeline-date">Jul 2017 – Aug 2018</span>
+                    </div>
+                    <div class="timeline-company">Charisma Design — Zimbabwe (Remote)</div>
+                    <ul class="timeline-bullets">
+                        <li>Designed client WordPress websites with a strong focus on usability and maintainability.</li>
+                    </ul>
+                    <div class="timeline-skills">
+                        <span class="timeline-skill-tag">WordPress</span>
+                        <span class="timeline-skill-tag">JavaScript</span>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-header">
+                        <div class="timeline-title">IT Specialist</div>
+                        <span class="timeline-date">Mar 2016 – Sep 2016</span>
+                    </div>
+                    <div class="timeline-company">Delport's Tobacco Beetle Exterminators — Harare, Zimbabwe (On-site)</div>
+                    <ul class="timeline-bullets">
+                        <li>Built a pest control management system in C#, later ported to web with PHP and React.</li>
+                        <li>Designed and maintained company website; built an in-house CRM and ad manager.</li>
+                    </ul>
+                    <div class="timeline-skills">
+                        <span class="timeline-skill-tag">C#</span>
+                        <span class="timeline-skill-tag">React.js</span>
+                        <span class="timeline-skill-tag">PHP</span>
+                        <span class="timeline-skill-tag">WordPress</span>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-header">
+                        <div class="timeline-title">Junior Web Developer</div>
+                        <span class="timeline-date">Sep 2015 – Dec 2015</span>
+                    </div>
+                    <div class="timeline-company">Perfect Circle SA — Port Elizabeth, South Africa (On-site)</div>
+                    <ul class="timeline-bullets">
+                        <li>Converted Photoshop designs into functional websites using Ruby on Rails.</li>
+                        <li>Performed bug fixing and migrated PHP-based websites to Ruby on Rails.</li>
+                    </ul>
+                    <div class="timeline-skills">
+                        <span class="timeline-skill-tag">Ruby on Rails</span>
+                        <span class="timeline-skill-tag">JavaScript</span>
+                        <span class="timeline-skill-tag">PHP</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section id="education">
+        <div class="container">
+            <div class="reveal">
+                <div class="section-label">Education</div>
+                <h2 class="section-title">Academic Background</h2>
+            </div>
+            <div class="education-card reveal">
+                <div class="education-icon">
+                    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.657 2.686 3 6 3s6-1.343 6-3v-5"/></svg>
+                </div>
+                <div class="education-info">
+                    <h3>Diploma in Information Technology</h3>
+                    <p>Damelin College — South Africa</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONNECT -->
+    <section id="connect">
+        <div class="container">
+            <div class="reveal">
+                <div class="section-label">Connect</div>
+                <h2 class="section-title">Let's Work Together</h2>
+                <p class="section-desc">I'm open to new opportunities, collaborations, and interesting conversations. Reach out through any of these platforms.</p>
+            </div>
+            <div class="connect-cards reveal">
+                <a href="https://github.com/garikaijenje" target="_blank" rel="noopener" class="connect-card cursor-pointer">
+                    <div class="connect-card-icon">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                    </div>
+                    <div>
+                        <h4>GitHub</h4>
+                        <p>@garikaijenje</p>
+                    </div>
+                </a>
+                <a href="https://www.linkedin.com/in/garikai-jenje" target="_blank" rel="noopener" class="connect-card cursor-pointer">
+                    <div class="connect-card-icon">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                    </div>
+                    <div>
+                        <h4>LinkedIn</h4>
+                        <p>Garikai Jenje</p>
+                    </div>
+                </a>
+                <a href="https://x.com/garikaijenje" target="_blank" rel="noopener" class="connect-card cursor-pointer">
+                    <div class="connect-card-icon">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    </div>
+                    <div>
+                        <h4>X / Twitter</h4>
+                        <p>@garikaijenje</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-inner">
+                &copy; 2025 Garikai Jenje. Built with care.
+            </div>
+        </div>
+    </footer>
+
+    <!-- LIGHTBOX -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <img src="" alt="Enlarged view" id="lightbox-img">
     </div>
 
     <script>
-        const root = document.documentElement;
-        let isLight = false;
 
-        function setMode(mode) {
-            const glow = document.getElementById('glow');
-            const btns = document.querySelectorAll('.button-group button');
-            
-            glow.className = 'glow-overlay mode-' + mode;
-            
-            btns.forEach(btn => {
-                btn.classList.remove('active');
-                if (btn.id === 'btn-' + mode) {
-                    btn.classList.add('active');
+        // MOBILE NAV
+        function toggleMobileNav() {
+            document.getElementById('mobileNav').classList.toggle('open');
+        }
+
+        // REVEAL ON SCROLL
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
                 }
             });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // LIGHTBOX
+        function openLightbox(imgEl) {
+            const lb = document.getElementById('lightbox');
+            const lbImg = document.getElementById('lightbox-img');
+            lbImg.src = imgEl.src;
+            lbImg.alt = imgEl.alt;
+            lb.classList.add('open');
+            document.body.style.overflow = 'hidden';
         }
 
-        function updateSize(val) {
-            root.style.setProperty('--glow-blur', val + 'px');
-            document.getElementById('size-val').textContent = val + 'px';
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('open');
+            document.body.style.overflow = '';
         }
 
-        function updateSpeed(val) {
-            root.style.setProperty('--glow-speed', val + 's');
-            root.style.setProperty('--blue-speed', (val / 2) + 's');
-            root.style.setProperty('--pink-speed', (val / 2.5) + 's');
-            document.getElementById('speed-val').textContent = val + 's';
-        }
-
-        function toggleTheme() {
-            isLight = !isLight;
-            document.documentElement.classList.toggle('light-theme');
-            const themeText = document.getElementById('theme-text');
-            const themeToggle = document.getElementById('theme-toggle');
-            themeText.textContent = isLight ? 'Dark Mode' : 'Light Mode';
-            themeToggle.setAttribute('aria-pressed', String(isLight));
-        }
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeLightbox();
+        });
     </script>
 </body>
 </html>
